@@ -12,8 +12,8 @@ The things I want to target to use or learn in here are:
 Placeholder until I've actually written some code
 
 # TODO List:
-[] Sort postman
-[] Install NVM
-[] Install Docker
-[] Postgres client (Research pgAdmin vs TablePlus)
-[] Extra extensions for Storm - Thunder Client (Postman alt?), Docker Extension (Think I have), GitLens (useful for other things?)
+- [ ] Sort postman
+- [ ] Install NVM
+- [ ] Install Docker
+- [ ] Postgres client (Research pgAdmin vs TablePlus)
+- [ ] Extra extensions for Storm - Thunder Client (Postman alt?), Docker Extension (Think I have), GitLens (useful for other things?)
