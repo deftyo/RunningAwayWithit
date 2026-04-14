@@ -2,7 +2,7 @@
 ## What
 This is a personal project to fill in/learn a few things on my own time. 
 
-The things I want to target to use or learn in here are:
+(Some of) The things I want to target to use or learn in here are:
 - Node.js / Express
 - React
 - Postgres
@@ -15,5 +15,9 @@ Placeholder until I've actually written some code
 - [x] Sort postman - 13/4/26
 - [x] Install NVM (0.40.3) - 12/4/26
 - [x] Install Docker - 13/4/26
-- [x] Postgres client (Research pgAdmin vs TablePlus)
-- [x] Extra extensions for Storm - Thunder Client (Postman alt?), Docker Extension (Think I have), GitLens (useful for other things?)
+- [x] Postgres client (Research pgAdmin vs TablePlus) - 13/4/26
+- [x] Extra extensions for Storm - Thunder Client (Postman alt?), Docker Extension (Think I have), GitLens (useful for other things?) - 13/4/26
+- [ ] Investigate Recharts
+- [ ] Look at tooling Tailwind in
+- [ ] Draw up Navigation requirements
+- [ ] Draw up Database diagram (rough or otherwise)
