@@ -23,6 +23,6 @@ Placeholder until I've actually written some code
 - [ ] Draw up Database diagram (rough or otherwise)
 
 # Notes
-- React frontend on 5174
+- React frontend on 5174 - Must run `npm run dev` every time I load :)
 - Express API on 3000
-- PostgreSQL in Docker on 5432
+- PostgreSQL in Docker on 5432 - Must run `docker compose up -d` also
