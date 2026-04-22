@@ -21,3 +21,8 @@ Placeholder until I've actually written some code
 - [ ] Look at tooling Tailwind in
 - [ ] Draw up Navigation requirements
 - [ ] Draw up Database diagram (rough or otherwise)
+
+# Notes
+- React frontend on 5174
+- Express API on 3000
+- PostgreSQL in Docker on 5432
