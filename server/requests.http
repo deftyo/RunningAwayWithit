@@ -1,0 +1,24 @@
+### Register user
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password123"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password123"
+}
+
+### Protected route - no token (should 401)
+GET http://localhost:3000/protected
+
+### Protected route - with token (should 200)
+GET http://localhost:3000/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MDYwNTM5ZC01ZGVhLTRiMDUtODBjZi01NjUyMWQ0MmQ4NmYiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3NzY5NzkyODIsImV4cCI6MTc3NzA2NTY4Mn0._355LlNtdtmoNy4piI5LrjXEqUyEKQxHn8VrRXkumSM
