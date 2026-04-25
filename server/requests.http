@@ -1,0 +1,65 @@
+### Register user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password123"
+}
+
+### Login and capture token
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password123"
+}
+
+> {%
+    client.global.set("token", response.body.token)
+%}
+
+### Add a run
+POST {{baseUrl}}/runs
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "date": "2026-04-24",
+  "distance": 5.5,
+  "duration": 1800,
+  "notes": "First test run"
+}
+
+### Get all runs
+GET {{baseUrl}}/runs
+Authorization: Bearer {{token}}
+
+### Get current month runs
+GET {{baseUrl}}/runs?month=current
+Authorization: Bearer {{token}}
+
+### Get last 5 runs
+GET {{baseUrl}}/runs?limit=5
+Authorization: Bearer {{token}}
+
+### Edit a run
+PUT {{baseUrl}}/runs/4e4b7f94-58cc-4070-bcda-92c2898a9917
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "date": "2026-04-24",
+  "distance": 6.0,
+  "duration": 2100,
+  "notes": "Updated run"
+}
+
+### Delete a run
+DELETE {{baseUrl}}/runs/4e4b7f94-58cc-4070-bcda-92c2898a9917
+Authorization: Bearer {{token}}
+
+### Get stats summary
+GET {{baseUrl}}/runs/stats/summary
+Authorization: Bearer {{token}}

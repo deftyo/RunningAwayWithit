@@ -26,3 +26,4 @@ Placeholder until I've actually written some code
 - React frontend on 5174 - Must run `npm run dev` every time I load :)
 - Express API on 3000
 - PostgreSQL in Docker on 5432 - Must run `docker compose up -d` also
+- `knex migrate:latest` && `knex seed:run` to aggregate some data
