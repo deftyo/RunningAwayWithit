@@ -9,9 +9,13 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
+// routes files that contain the actual api endpoint
 const authRoutes = require('./routes/auth')
-app.use('/auth', authRoutes)
+const runsRoutes = require('./routes/runs')
 
+// make them available at /auth and /runs
+app.use('/auth', authRoutes)
+app.use('/runs', runsRoutes)
 app.get('/health', async (req, res) => {
   const db = require('./db/knex')
   try {
@@ -20,12 +24,6 @@ app.get('/health', async (req, res) => {
   } catch (err) {
     res.status(500).json({ status: 'error', database: 'disconnected' })
   }
-})
-
-const authenticate = require('./middleware/authenticate')
-
-app.get('/protected', authenticate, (req, res) => {
-  res.json({ message: 'You are authenticated', user: req.user })
 })
 
 app.listen(PORT, () => {

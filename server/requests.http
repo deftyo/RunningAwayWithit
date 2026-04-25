@@ -1,5 +1,5 @@
 ### Register user
-POST http://localhost:3000/auth/register
+POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
@@ -7,8 +7,8 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### Login
-POST http://localhost:3000/auth/login
+### Login and capture token
+POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
@@ -16,9 +16,18 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### Protected route - no token (should 401)
-GET http://localhost:3000/protected
+> {%
+    client.global.set("token", response.body.token)
+%}
 
-### Protected route - with token (should 200)
-GET http://localhost:3000/protected
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MDYwNTM5ZC01ZGVhLTRiMDUtODBjZi01NjUyMWQ0MmQ4NmYiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3NzY5NzkyODIsImV4cCI6MTc3NzA2NTY4Mn0._355LlNtdtmoNy4piI5LrjXEqUyEKQxHn8VrRXkumSM
+### Add a run
+POST {{baseUrl}}/runs
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "date": "2026-04-24",
+  "distance": 5.5,
+  "duration": 1800,
+  "notes": "First test run"
+}
