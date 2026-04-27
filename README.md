@@ -27,11 +27,11 @@ Placeholder until I've actually written some code
 - [x] Stats summary endpoint - 25/4/26
 - [x] Seed data - 25/4/26
 - [ ] Investigate Recharts
-- [x] Look at tooling Tailwind in
+- [x] Look at tooling Tailwind in - 25/4/26
 - [ ] Draw up Navigation requirements
 - [ ] Draw up Database diagram
-- [x] Spike 2 - React frontend, login form talking to API
-- [ ] Spike 3 - Tailwind setup and component structure
+- [x] Spike 2 - React frontend, login form talking to API - 25/4/26
+- [x] Spike 3 - Tailwind setup and component structure
 - [ ] Spike 4 - AWS deployment
 - [ ] Spike 5 - CI/CD with GitHub Actions
 

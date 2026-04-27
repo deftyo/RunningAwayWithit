@@ -98,7 +98,10 @@ export default function Dashboard() {
             <div className="bg-gray-900 rounded-xl border border-gray-800">
                 <div className="flex justify-between items-center px-6 py-4 border-b border-gray-800">
                     <h2 className="font-semibold text-white">Recent Runs</h2>
-                    <button className="text-orange-500 hover:text-orange-400 text-sm transition-colors">
+                    <button
+                        onClick={() => navigate('/add-run')}
+                        className="text-orange-500 hover:text-orange-400 text-sm transition-colors"
+                    >
                         + Add run
                     </button>
                 </div>
