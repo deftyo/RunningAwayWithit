@@ -31,7 +31,7 @@ Placeholder until I've actually written some code
 - [ ] Draw up Navigation requirements
 - [ ] Draw up Database diagram
 - [x] Spike 2 - React frontend, login form talking to API - 25/4/26
-- [ ] Spike 3 - Tailwind setup and component structure
+- [x] Spike 3 - Tailwind setup and component structure
 - [ ] Spike 4 - AWS deployment
 - [ ] Spike 5 - CI/CD with GitHub Actions
 
