@@ -3,6 +3,7 @@ import {AuthProvider} from './context/AuthContext'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import AddRun from './pages/AddRun'
+import Archive from './pages/Archive'
 
 function ProtectedRoute({children}) {
     const token = localStorage.getItem('token')
@@ -25,6 +26,11 @@ export default function App() {
                         <AddRun/>
                     </ProtectedRoute>
                 }/>
+                <Route path="/archive" element={
+                    <ProtectedRoute>
+                        <Archive />
+                    </ProtectedRoute>
+                } />
             </Routes>
         </AuthProvider>
     )
