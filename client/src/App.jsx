@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import AddRun from './pages/AddRun'
 import Archive from './pages/Archive'
+import Stats from './pages/Stats'
 
 function ProtectedRoute({children}) {
     const token = localStorage.getItem('token')
@@ -28,9 +29,14 @@ export default function App() {
                 }/>
                 <Route path="/archive" element={
                     <ProtectedRoute>
-                        <Archive />
+                        <Archive/>
                     </ProtectedRoute>
-                } />
+                }/>
+                <Route path="/stats" element={
+                    <ProtectedRoute>
+                        <Stats/>
+                    </ProtectedRoute>
+                }/>
             </Routes>
         </AuthProvider>
     )
