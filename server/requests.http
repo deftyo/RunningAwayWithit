@@ -44,8 +44,12 @@ Authorization: Bearer {{token}}
 GET {{baseUrl}}/runs?limit=5
 Authorization: Bearer {{token}}
 
+### Get run by ID
+GET {{baseUrl}}/runs/e51c51de-519f-4223-b190-b629157732ac
+Authorization: Bearer {{token}}
+
 ### Edit a run
-PUT {{baseUrl}}/runs/4e4b7f94-58cc-4070-bcda-92c2898a9917
+PUT {{baseUrl}}/runs/e51c51de-519f-4223-b190-b629157732ac
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

@@ -26,14 +26,16 @@ Placeholder until I've actually written some code
 - [x] Runs CRUD endpoints - 25/4/26
 - [x] Stats summary endpoint - 25/4/26
 - [x] Seed data - 25/4/26
-- [ ] Investigate Recharts
+- [x] Investigate Recharts - 27/4/26
 - [x] Look at tooling Tailwind in - 25/4/26
-- [ ] Draw up Navigation requirements
-- [ ] Draw up Database diagram
+- [x] Draw up Navigation requirements - 27/4/26
+- [x] Draw up Database diagram - 27/4/26
 - [x] Spike 2 - React frontend, login form talking to API - 25/4/26
-- [x] Spike 3 - Tailwind setup and component structure
-- [ ] Spike 4 - AWS deployment
+- [x] Spike 3 - Tailwind setup and component structure - 27/4/26
+- [x] Spike 4 - AWS deployment - 02/5/26
 - [ ] Spike 5 - CI/CD with GitHub Actions
+- [ ] Spike 6 - React Expansion - Edit Runs component
+
 
 # Notes
 - React frontend on `5174` - `npm run dev` in `client`

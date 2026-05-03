@@ -1,10 +1,11 @@
-import {Navigate, Route, Routes} from 'react-router-dom'
+import {Navigate, Route, Routes, useParams} from 'react-router-dom'
 import {AuthProvider} from './context/AuthContext'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import AddRun from './pages/AddRun'
 import Archive from './pages/Archive'
 import Stats from './pages/Stats'
+import EditRun from "./pages/EditRun.jsx";
 
 function ProtectedRoute({children}) {
     const token = localStorage.getItem('token')
@@ -12,6 +13,8 @@ function ProtectedRoute({children}) {
 }
 
 export default function App() {
+    const {id} = useParams()
+
     return (
         <AuthProvider>
             <Routes>
@@ -35,6 +38,11 @@ export default function App() {
                 <Route path="/stats" element={
                     <ProtectedRoute>
                         <Stats/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/runs/:id" element={
+                    <ProtectedRoute>
+                        <EditRun/>
                     </ProtectedRoute>
                 }/>
             </Routes>

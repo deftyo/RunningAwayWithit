@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import {useNavigate, useParams} from 'react-router-dom'
 import api from '../api/axios'
 import Layout from '../components/Layout'
 import RunForm from "../components/Forms/RunForm.jsx";
 
-export default function AddRun() {
+export default function EditRun() {
     const navigate = useNavigate()
     const today = new Date().toISOString().split('T')[0]
+    const {id} = useParams()
 
     const [form, setForm] = useState({
         date: today,
@@ -15,8 +16,31 @@ export default function AddRun() {
         duration_seconds: '',
         notes: ''
     })
+
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    const fetchData = async () => {
+        try {
+            const res = await api.get(`/runs/${id}`)
+            const run = res.data.run
+            setForm({
+                date: new Date().toISOString().split('T')[0],
+                distance: run.distance.toString(),
+                duration_minutes: Math.floor(run.duration / 60).toString(),
+                duration_seconds: (run.duration % 60).toString(),
+                notes: run.notes
+            })
+        } catch (err) {
+            setError(err.response?.data?.error || 'Something went wrong')
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const handleChange = (e) => {
         setForm({...form, [e.target.name]: e.target.value})
@@ -39,7 +63,7 @@ export default function AddRun() {
         }
 
         try {
-            await api.post('/runs', {
+            await api.put(`/runs/${id}`, {
                 date: form.date,
                 distance: parseFloat(form.distance),
                 duration,
