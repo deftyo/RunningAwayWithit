@@ -79,6 +79,23 @@ router.put('/:id', authenticate, async (req, res) => {
     }
 })
 
+router.get('/:id', authenticate, async (req, res) => {
+    const userId = req.user.userId
+
+    try {
+        let query = db('runs')
+            .where({ user_id: userId, id: req.params.id })
+            .first()
+
+        const run = await query
+        res.json({ run })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'Server error' })
+    }
+})
+
 router.delete('/:id', authenticate, async (req, res) => {
     const userId = req.user.userId
     const { id } = req.params

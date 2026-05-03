@@ -29,7 +29,7 @@ export default function EditRun() {
             const res = await api.get(`/runs/${id}`)
             const run = res.data.run
             setForm({
-                date: run.date,
+                date: new Date().toISOString().split('T')[0],
                 distance: run.distance.toString(),
                 duration_minutes: Math.floor(run.duration / 60).toString(),
                 duration_seconds: (run.duration % 60).toString(),

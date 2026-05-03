@@ -1,4 +1,4 @@
-import {Navigate, Route, Routes} from 'react-router-dom'
+import {Navigate, Route, Routes, useParams} from 'react-router-dom'
 import {AuthProvider} from './context/AuthContext'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
@@ -13,6 +13,8 @@ function ProtectedRoute({children}) {
 }
 
 export default function App() {
+    const {id} = useParams()
+
     return (
         <AuthProvider>
             <Routes>
@@ -38,7 +40,7 @@ export default function App() {
                         <Stats/>
                     </ProtectedRoute>
                 }/>
-                <Route path="/runs/{id}" element={
+                <Route path="/runs/:id" element={
                     <ProtectedRoute>
                         <EditRun/>
                     </ProtectedRoute>

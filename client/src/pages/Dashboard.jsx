@@ -114,7 +114,7 @@ export default function Dashboard() {
                             <li key={run.id} className="px-6 py-4 flex justify-between items-center">
                                 <div>
                                     <p>
-                                        <button onClick={() => navigate(`runs/${run.id}`)}>Edit Run</button>
+                                        <button onClick={() => navigate(`/runs/${run.id}`)}>Edit Run</button>
                                     </p>
                                     <p className="text-white font-medium">
                                         {parseFloat(run.distance).toFixed(1)}km
