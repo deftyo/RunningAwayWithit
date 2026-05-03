@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import AddRun from './pages/AddRun'
 import Archive from './pages/Archive'
 import Stats from './pages/Stats'
+import EditRun from "./pages/EditRun.jsx";
 
 function ProtectedRoute({children}) {
     const token = localStorage.getItem('token')
@@ -35,6 +36,11 @@ export default function App() {
                 <Route path="/stats" element={
                     <ProtectedRoute>
                         <Stats/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/runs/{id}" element={
+                    <ProtectedRoute>
+                        <EditRun/>
                     </ProtectedRoute>
                 }/>
             </Routes>

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useAuth} from '../context/AuthContext'
 import api from '../api/axios'
 import Layout from '../components/Layout'
 
 export default function Dashboard() {
-    const { user, logout } = useAuth()
+    const {user, logout} = useAuth()
     const navigate = useNavigate()
     const [runs, setRuns] = useState([])
     const [stats, setStats] = useState(null)
@@ -81,10 +81,10 @@ export default function Dashboard() {
             {stats && (
                 <div className="grid grid-cols-2 gap-4 mb-8 sm:grid-cols-4">
                     {[
-                        { label: 'Total Runs', value: stats.total_runs },
-                        { label: 'Total Distance', value: `${parseFloat(stats.total_distance).toFixed(1)}km` },
-                        { label: 'Longest Run', value: `${parseFloat(stats.longest_run).toFixed(1)}km` },
-                        { label: 'Avg Distance', value: `${parseFloat(stats.avg_distance).toFixed(1)}km` },
+                        {label: 'Total Runs', value: stats.total_runs},
+                        {label: 'Total Distance', value: `${parseFloat(stats.total_distance).toFixed(1)}km`},
+                        {label: 'Longest Run', value: `${parseFloat(stats.longest_run).toFixed(1)}km`},
+                        {label: 'Avg Distance', value: `${parseFloat(stats.avg_distance).toFixed(1)}km`},
                     ].map(stat => (
                         <div key={stat.label} className="bg-gray-900 rounded-xl p-4 border border-gray-800">
                             <p className="text-gray-400 text-sm mb-1">{stat.label}</p>
@@ -113,6 +113,9 @@ export default function Dashboard() {
                         {runs.map(run => (
                             <li key={run.id} className="px-6 py-4 flex justify-between items-center">
                                 <div>
+                                    <p>
+                                        <button onClick={() => navigate(`runs/${run.id}`)}>Edit Run</button>
+                                    </p>
                                     <p className="text-white font-medium">
                                         {parseFloat(run.distance).toFixed(1)}km
                                     </p>
