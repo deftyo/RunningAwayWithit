@@ -12,6 +12,7 @@ router.post('/', authenticate, async (req, res) => {
             .insert({
                 user_id: userId,
                 date: date || new Date(),
+                avg_pace: duration / distance,
                 distance,
                 duration,
                 notes,
