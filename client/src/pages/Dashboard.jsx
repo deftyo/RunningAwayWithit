@@ -69,12 +69,6 @@ export default function Dashboard() {
                     <h1 className="text-3xl font-bold text-white">Dashboard</h1>
                     <p className="text-gray-400 mt-1">Welcome back, {user?.email}</p>
                 </div>
-                <button
-                    onClick={handleLogout}
-                    className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                    Log out
-                </button>
             </div>
 
             {/* Stats */}
@@ -100,7 +94,7 @@ export default function Dashboard() {
                     <h2 className="font-semibold text-white">Recent Runs</h2>
                     <button
                         onClick={() => navigate('/add-run')}
-                        className="text-orange-500 hover:text-orange-400 text-sm transition-colors"
+                        className="text-orange-500 hover:text-orange-400 text-sm transition-colors cursor-pointer"
                     >
                         + Add run
                     </button>
@@ -111,11 +105,9 @@ export default function Dashboard() {
                 ) : (
                     <ul className="divide-y divide-gray-800">
                         {runs.map(run => (
-                            <li key={run.id} className="px-6 py-4 flex justify-between items-center">
+                            <li key={run.id} className="px-6 py-4 flex justify-between items-center cursor-pointer" onClick={() => navigate(`/runs/${run.id}`)}>
                                 <div>
-                                    <p>
-                                        <button onClick={() => navigate(`/runs/${run.id}`)}>Edit Run</button>
-                                    </p>
+
                                     <p className="text-white font-medium">
                                         {parseFloat(run.distance).toFixed(1)}km
                                     </p>

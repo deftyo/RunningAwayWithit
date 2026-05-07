@@ -99,6 +99,12 @@ export default function EditRun() {
                     error={error}
                     loading={loading}
                 />
+
+                <button
+                    className="w-full disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg transition-colors cursor-pointer bg-red-500 hover:bg-red-800 mt-1 wid"
+                    onClick={() => {}}>
+                    Delete Run
+                </button>
             </div>
         </Layout>
     )

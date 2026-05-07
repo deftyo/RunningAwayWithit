@@ -37,7 +37,7 @@ export default function Layout({ children }) {
                                 <button
                                     key={item.path}
                                     onClick={() => navigate(item.path)}
-                                    className={`text-sm font-medium transition-colors ${
+                                    className={`text-sm font-medium transition-colors cursor-pointer ${
                                         location.pathname === item.path
                                             ? 'text-orange-500'
                                             : 'text-gray-400 hover:text-white'
@@ -48,7 +48,7 @@ export default function Layout({ children }) {
                             ))}
                             <button
                                 onClick={handleLogout}
-                                className="text-sm text-gray-400 hover:text-white transition-colors"
+                                className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
                             >
                                 Log out
                             </button>

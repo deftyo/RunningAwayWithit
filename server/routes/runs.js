@@ -127,7 +127,8 @@ router.get('/stats/summary', authenticate, async (req, res) => {
                 db.raw('AVG(distance) as avg_distance'),
                 db.raw('MAX(distance) as longest_run'),
                 db.raw('SUM(duration) as total_duration'),
-                db.raw('AVG(duration) as avg_duration')
+                db.raw('AVG(duration) as avg_duration'),
+                db.raw('MIN(duration / distance) as best_pace')
             )
             .first()
 

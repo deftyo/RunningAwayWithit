@@ -90,7 +90,7 @@ export default function RunForm({ initialValues, onSubmit, handleChange, error, 
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg transition-colors"
+                className="cursor-pointer w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg transition-colors"
             >
                 {loading ? 'Saving...' : 'Save Run'}
             </button>
