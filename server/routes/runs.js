@@ -2,10 +2,13 @@ const express = require('express')
 const router = express.Router()
 const db = require('../db/knex')
 const authenticate = require('../middleware/authenticate')
+const { validateRun } = require('../validation/runValidation')
 
 router.post('/', authenticate, async (req, res) => {
     const { date, distance, duration, notes } = req.body
     const userId = req.user.userId
+    const error = validateRun(req.body)
+    if (error) return res.status(400).json({ error })
 
     try {
         const [run] = await db('runs')
@@ -60,6 +63,10 @@ router.put('/:id', authenticate, async (req, res) => {
     const userId = req.user.userId
     const { id } = req.params
     const { date, distance, duration, notes } = req.body
+    // note - this operates like a laravel request
+    // TODO: RE: above - can be added like middleware which would be a better pattern
+    const error = validateRun(req.body)
+    if (error) return res.status(400).json({ error })
 
     try {
         const run = await db('runs').where({ id, user_id: userId }).first()
