@@ -19,6 +19,12 @@ export default function Stats() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const formatPace = (seconds) => {
+        const mins = Math.floor(seconds / 60)
+        const secs = seconds % 60
+        return `${mins}:${secs.toString().padStart(2, '0')}`
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -70,6 +76,7 @@ export default function Stats() {
                         { label: 'Total Distance', value: `${parseFloat(stats.total_distance).toFixed(1)}km` },
                         { label: 'Longest Run', value: `${parseFloat(stats.longest_run).toFixed(1)}km` },
                         { label: 'Avg Distance', value: `${parseFloat(stats.avg_distance).toFixed(1)}km` },
+                        { label: 'Fastest Run', value: `${parseFloat(formatPace(stats.best_pace)).toFixed(1)}min/km` },
                     ].map(stat => (
                         <div key={stat.label} className="bg-gray-900 rounded-xl p-4 border border-gray-800">
                             <p className="text-gray-400 text-sm mb-1">{stat.label}</p>

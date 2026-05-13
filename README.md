@@ -32,9 +32,10 @@ Placeholder until I've actually written some code
 - [x] Draw up Database diagram - 27/4/26
 - [x] Spike 2 - React frontend, login form talking to API - 25/4/26
 - [x] Spike 3 - Tailwind setup and component structure - 27/4/26
-- [x] Spike 4 - AWS deployment - 02/5/26
-- [ ] Spike 5 - CI/CD with GitHub Actions
-- [ ] Spike 6 - React Expansion - Edit Runs component
+- [ ] Spike 4 - AWS deployment - NEED TO REVISIT
+- [ ] Spike 5 - React Expansion - Edit Runs component
+- [ ] Spike ? - CI/CD with GitHub Actions
+- [ ] Wire up delete endpoint
 
 
 # Notes

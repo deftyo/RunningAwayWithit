@@ -61,7 +61,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Delete a run
-DELETE {{baseUrl}}/runs/4e4b7f94-58cc-4070-bcda-92c2898a9917
+DELETE {{baseUrl}}/runs/c203c9a2-a0ed-456a-8349-1e60783c870b
 Authorization: Bearer {{token}}
 
 ### Get stats summary
