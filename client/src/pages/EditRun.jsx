@@ -21,6 +21,7 @@ export default function EditRun() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        // TODO: add .then() to fetchData() to handle errors
         fetchData()
     }, [])
 
@@ -46,6 +47,7 @@ export default function EditRun() {
         setForm({...form, [e.target.name]: e.target.value})
     }
 
+    // TODO: duplicated method - composable refactor candidate?
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError(null)
@@ -79,6 +81,18 @@ export default function EditRun() {
         }
     }
 
+    const handleDelete = async () => {
+        // TODO: make this a modal or something nicer than a dialog box
+        if (!window.confirm('Are you sure you want to delete this run?')) return
+
+        try {
+            await api.delete(`/runs/${id}`)
+            navigate('/runs')
+        } catch (err) {
+            setError('Failed to delete run: ' + err)
+        }
+    }
+
     return (
         <Layout>
             <div className="max-w-lg mx-auto">
@@ -102,7 +116,7 @@ export default function EditRun() {
 
                 <button
                     className="w-full disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg transition-colors cursor-pointer bg-red-500 hover:bg-red-800 mt-1 wid"
-                    onClick={() => {}}>
+                    onClick={handleDelete}>
                     Delete Run
                 </button>
             </div>
