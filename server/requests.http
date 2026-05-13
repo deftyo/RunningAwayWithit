@@ -55,7 +55,7 @@ Authorization: Bearer {{token}}
 
 {
   "date": "2026-04-24",
-  "distance": 6.0,
+  "distance": "XXXXXXXXXXX",
   "duration": 2100,
   "notes": "Updated run"
 }

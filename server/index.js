@@ -28,4 +28,6 @@ app.get('/health', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
+}).on('error', (err) => {
+  console.error('Server error:', err)
 })
