@@ -1,5 +1,5 @@
 import {Navigate, Route, Routes, useParams} from 'react-router-dom'
-import {AuthProvider} from './context/AuthContext'
+import {AuthProvider, useAuth} from './context/AuthContext'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import AddRun from './pages/AddRun'
@@ -8,7 +8,7 @@ import Stats from './pages/Stats'
 import EditRun from "./pages/EditRun.jsx";
 
 function ProtectedRoute({children}) {
-    const token = localStorage.getItem('token')
+    const {token} = useAuth()
     return token ? children : <Navigate to="/login"/>
 }
 
