@@ -8,6 +8,8 @@ import runsRoutes from './routes/runs'
 import shoesRoutes from './routes/shoes'
 import routesRoutes from './routes/routes' // maybe swap this?
 import goalsRoutes from './routes/goals'
+import stravaRoutes from './routes/strava'
+import stravaActivityRoutes from './routes/strava-activities'
 
 import db from './db/knex'
 
@@ -22,6 +24,8 @@ app.use('/runs', runsRoutes)
 app.use('/shoes', shoesRoutes)
 app.use('/routes', routesRoutes)
 app.use('/goals', goalsRoutes)
+app.use('/auth/strava', stravaRoutes)
+app.use('/strava', stravaActivityRoutes)
 
 app.get('/health', async (req, res) => {
     try {
