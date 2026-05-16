@@ -14,6 +14,8 @@ const config: { development: Knex.Config } = {
         },
         migrations: {
             directory: './migrations',
+            extension: 'ts',
+            stub: 'knex_migrations_stub.ts' // use the correctly typed version!!
         },
         seeds: {
             directory: './seeds',

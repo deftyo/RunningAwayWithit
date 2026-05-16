@@ -67,3 +67,11 @@ Authorization: Bearer {{token}}
 ### Get stats summary
 GET {{baseUrl}}/runs/stats/summary
 Authorization: Bearer {{token}}
+
+### Strava Connect
+GET {{baseUrl}}/auth/strava/connect
+Authorization: Bearer {{token}}
+
+### Strava Get Latest Activities
+GET {{baseUrl}}/strava/import-latest
+Authorization: Bearer {{token}}

@@ -1,46 +1,96 @@
-# RunningAwayWithit
-## What
-This is a personal project to fill in/learn a few things on my own time. 
+# RunningAwayWithIt 🏃
 
-(Some of) The things I want to target to use or learn in here are:
-- Node.js / Express
-- React
-- Postgres
-- AWS
+A personal running tracker built to learn modern full-stack development — Node.js, React, PostgreSQL, and AWS.
 
-# How to run/install locally
-Placeholder until I've actually written some code
+---
 
-# TODO List:
-- [x] Sort postman - 13/4/26
-- [x] Install NVM (0.40.3) - 12/4/26
-- [x] Install Docker - 13/4/26
-- [x] Postgres client (Research pgAdmin vs TablePlus) - 13/4/26
-- [x] Extra extensions for Storm - 13/4/26
-- [x] Scaffold Express server - 25/4/26
-- [x] Scaffold React client with Vite - 25/4/26
-- [x] Connect Express to PostgreSQL via Docker - 25/4/26
-- [x] Database migrations - users and runs tables - 25/4/26
-- [x] Auth endpoints - register and login - 25/4/26
-- [x] JWT middleware - 25/4/26
-- [x] Runs CRUD endpoints - 25/4/26
-- [x] Stats summary endpoint - 25/4/26
-- [x] Seed data - 25/4/26
-- [x] Investigate Recharts - 27/4/26
-- [x] Look at tooling Tailwind in - 25/4/26
-- [x] Draw up Navigation requirements - 27/4/26
-- [x] Draw up Database diagram - 27/4/26
-- [x] Spike 2 - React frontend, login form talking to API - 25/4/26
-- [x] Spike 3 - Tailwind setup and component structure - 27/4/26
-- [ ] Spike 4 - AWS deployment - NEED TO REVISIT
-- [ ] Spike 5 - React Expansion - Edit Runs component
-- [ ] Spike ? - CI/CD with GitHub Actions
-- [ ] Wire up delete endpoint
+## Stack
 
+| Layer | Tech |
+|---|---|
+| Frontend | React + Vite + Tailwind CSS |
+| Backend | Node.js + Express + TypeScript |
+| Database | PostgreSQL (Docker) + Knex |
+| Auth | JWT |
+| Maps | Leaflet |
+| GPS | Strava API |
 
-# Notes
-- React frontend on `5174` - `npm run dev` in `client`
-- Express API on `3000` - `npm run dev` in `server`
-- PostgreSQL in Docker on `5432`
-- Run `docker compose up` - remember Docker for Desktop needs to be running!
-- `knex migrate:latest` && `knex seed:run` to aggregate some data
+---
+
+## Running Locally
+
+### Prerequisites
+- Docker (I am using via WSL)
+- Node.js (via NVM)
+
+### 1. Start the database
+```bash
+# From WSL Ubuntu
+cd /mnt/g/Personal/RunningAwayWithit
+docker compose up -d
+```
+
+### 2. Run migrations and seed data
+```bash
+cd server
+npx knex migrate:latest
+npx knex seed:run
+```
+
+### 3. Start the server
+```bash
+cd server
+npm run dev
+# Runs on http://localhost:3085
+```
+
+### 4. Start the client
+```bash
+cd client
+npm run dev
+# Runs on http://localhost:5173
+```
+
+---
+
+## Environment Variables
+
+Create `server/.env`:
+
+```
+DATABASE_URL=postgres://...
+JWT_SECRET=your_secret
+STRAVA_CLIENT_ID=your_client_id
+STRAVA_CLIENT_SECRET=your_client_secret
+STRAVA_REDIRECT_URI=http://localhost:3085/auth/strava/callback
+CLIENT_URL=http://localhost:5173
+```
+
+---
+
+## Roadmap
+
+- [x] Express server scaffold
+- [x] React + Vite client scaffold
+- [x] PostgreSQL via Docker
+- [x] JWT authentication
+- [x] Runs CRUD
+- [x] Stat summary
+- [x] TypeScript migration
+- [x] Multi-relational schema (shoes, routes, goals)
+- [ ] GPS integration via Strava OAuth ← *in progress*
+- [ ] Map visualisation with Leaflet
+- [ ] Elevation profiles
+- [ ] Route comparison (same course, different times)
+- [ ] Strava webhook (auto-import new runs)
+- [ ] Jest test suite (service layer and auth, post-MVP)
+- [ ] AWS deployment
+- [ ] CI/CD with GitHub Actions
+- [ ] Deck.gl migration (if 3D/terrain viz needed later)
+
+---
+
+## Notes
+
+- Seed credentials: `test@test.com` / `password123`
+- Port 3000 is excluded on dev machine — server runs on 3085
