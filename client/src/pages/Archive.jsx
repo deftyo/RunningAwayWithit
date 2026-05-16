@@ -86,7 +86,8 @@ export default function Archive() {
                 ) : (
                     <ul className="divide-y divide-gray-800">
                         {runs.map(run => (
-                            <li key={run.id} className="px-6 py-4 flex justify-between items-center">
+                            <li key={run.id} className="px-6 py-4 flex justify-between items-center cursor-pointer"
+                                onClick={() => navigate(`/runs/${run.id}`)}>
                                 <div>
                                     <p className="text-white font-medium">
                                         {parseFloat(run.distance).toFixed(1)}km
