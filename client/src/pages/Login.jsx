@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useAuth} from '../context/AuthContext'
 import api from '../api/axios'
 import Layout from '../components/Layout'
 
@@ -9,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
-    const { login } = useAuth()
+    const {login} = useAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -18,10 +18,9 @@ export default function Login() {
         setLoading(true)
 
         try {
-            const res = await api.post('/auth/login', { email, password })
-            const { user, token } = res.data
-            login(user, token)
-            localStorage.setItem('token', token)
+            const res = await api.post('/auth/login', {email, password})
+            const {user, token} = res.data
+            login(user, token) // this now handles everything
             navigate('/dashboard')
         } catch (err) {
             setError(err.response?.data?.error || 'Something went wrong')
