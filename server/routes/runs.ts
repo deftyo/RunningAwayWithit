@@ -1,21 +1,25 @@
-const express = require('express')
-const router = express.Router()
-const db = require('../db/knex')
-const authenticate = require('../middleware/authenticate')
-const { validateRun } = require('../validation/runValidation')
+import { Request, Response, Router } from 'express'
+import db from '../db/knex'
+import authenticate from '../middleware/authenticate'
+import { validateRun, RunInput } from '../validation/runValidation'
 
-router.post('/', authenticate, async (req, res) => {
-    const { date, distance, duration, notes } = req.body
+const router = Router()
+
+router.post('/', authenticate, async (req: Request, res: Response): Promise<void> => {
+    const { date, distance, duration, notes } = req.body as RunInput
     const userId = req.user.userId
     const error = validateRun(req.body)
-    if (error) return res.status(400).json({ error })
+    if (error) {
+        res.status(400).json({ error })
+        return
+    }
 
     try {
         const [run] = await db('runs')
             .insert({
                 user_id: userId,
                 date: date || new Date(),
-                avg_pace: duration / distance,
+                avg_pace: Number(duration) / Number(distance),
                 distance,
                 duration,
                 notes,
@@ -30,7 +34,7 @@ router.post('/', authenticate, async (req, res) => {
     }
 })
 
-router.get('/', authenticate, async (req, res) => {
+router.get('/', authenticate, async (req: Request, res: Response): Promise<void> => {
     const userId = req.user.userId
     const { limit, month } = req.query
 
@@ -47,7 +51,7 @@ router.get('/', authenticate, async (req, res) => {
         }
 
         if (limit) {
-            query = query.limit(parseInt(limit))
+            query = query.limit(parseInt(limit as string))
         }
 
         const runs = await query
@@ -59,19 +63,21 @@ router.get('/', authenticate, async (req, res) => {
     }
 })
 
-router.put('/:id', authenticate, async (req, res) => {
+router.put('/:id', authenticate, async (req: Request, res: Response): Promise<void> => {
     const userId = req.user.userId
     const { id } = req.params
-    const { date, distance, duration, notes } = req.body
-    // note - this operates like a laravel request
-    // TODO: RE: above - can be added like middleware which would be a better pattern
+    const { date, distance, duration, notes } = req.body as RunInput
     const error = validateRun(req.body)
-    if (error) return res.status(400).json({ error })
+    if (error) {
+        res.status(400).json({ error })
+        return
+    }
 
     try {
         const run = await db('runs').where({ id, user_id: userId }).first()
         if (!run) {
-            return res.status(404).json({ error: 'Run not found' })
+            res.status(404).json({ error: 'Run not found' })
+            return
         }
 
         const [updated] = await db('runs')
@@ -87,15 +93,14 @@ router.put('/:id', authenticate, async (req, res) => {
     }
 })
 
-router.get('/:id', authenticate, async (req, res) => {
+router.get('/:id', authenticate, async (req: Request, res: Response): Promise<void> => {
     const userId = req.user.userId
 
     try {
-        let query = db('runs')
+        const run = await db('runs')
             .where({ user_id: userId, id: req.params.id })
             .first()
 
-        const run = await query
         res.json({ run })
 
     } catch (err) {
@@ -104,14 +109,15 @@ router.get('/:id', authenticate, async (req, res) => {
     }
 })
 
-router.delete('/:id', authenticate, async (req, res) => {
+router.delete('/:id', authenticate, async (req: Request, res: Response): Promise<void> => {
     const userId = req.user.userId
     const { id } = req.params
 
     try {
         const run = await db('runs').where({ id, user_id: userId }).first()
         if (!run) {
-            return res.status(404).json({ error: 'Run not found' })
+            res.status(404).json({ error: 'Run not found' })
+            return
         }
 
         await db('runs').where({ id, user_id: userId }).delete()
@@ -123,24 +129,12 @@ router.delete('/:id', authenticate, async (req, res) => {
     }
 })
 
-router.get('/stats/summary', authenticate, async (req, res) => {
+router.get('/stats/summary', authenticate, async (req: Request, res: Response): Promise<void> => {
     const userId = req.user.userId
 
     try {
-        const stats = await db('runs')
-            .where({ user_id: userId })
-            .select(
-                db.raw('COUNT(*) as total_runs'),
-                db.raw('SUM(distance) as total_distance'),
-                db.raw('AVG(distance) as avg_distance'),
-                db.raw('MAX(distance) as longest_run'),
-                db.raw('SUM(duration) as total_duration'),
-                db.raw('AVG(duration) as avg_duration'),
-                db.raw('MIN(duration / distance) as best_pace')
-            )
-            .first()
-
-        res.json({ stats })
+        const runs = await db('runs').where({ user_id: userId })
+        res.json({ runs })
 
     } catch (err) {
         console.error(err)
@@ -148,4 +142,4 @@ router.get('/stats/summary', authenticate, async (req, res) => {
     }
 })
 
-module.exports = router
+export default router
