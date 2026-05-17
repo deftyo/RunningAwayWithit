@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useAuth} from '../context/AuthContext'
+import {useStravaSync} from '../hooks/useStravaSync'
 import api from '../api/axios'
 import Layout from '../components/Layout'
 
@@ -10,6 +11,7 @@ export default function Login() {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const {login} = useAuth()
+    const {sync} = useStravaSync()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -20,7 +22,11 @@ export default function Login() {
         try {
             const res = await api.post('/auth/login', {email, password})
             const {user, token} = res.data
-            login(user, token) // this now handles everything
+            login(user, token)
+
+            // Fire Strava sync after successful login — non-blocking, runs in background
+            sync()
+
             navigate('/dashboard')
         } catch (err) {
             setError(err.response?.data?.error || 'Something went wrong')
@@ -71,7 +77,7 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg transition-colors"
+                        className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-medium py-2.5 rounded-lg transition-colors"
                     >
                         {loading ? 'Logging in...' : 'Log in'}
                     </button>

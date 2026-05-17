@@ -88,6 +88,11 @@ CLIENT_URL=http://localhost:5173
 - [ ] CI/CD with GitHub Actions
 - [ ] Deck.gl migration (if 3D/terrain viz needed later)
 
+## Future Ideas
+- [ ] MyFitnessPal integration for TDEE
+- [ ] Spotify Integration?
+- [ ] Mobile app in React Native?
+
 ---
 
 ## Notes
